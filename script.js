@@ -18,7 +18,7 @@ async function sendForm(event) {
     formInputEmail.value = '';
     formInputPhone.value = '';
     formInputMessage.value = '';
-    const response = await fetch("http://152.67.43.92:3000/api/v1/sendForm", {
+    const response = await fetch("https://152.67.43.92/sendForm", {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
