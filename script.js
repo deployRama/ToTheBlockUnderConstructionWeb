@@ -22,10 +22,11 @@ async function sendForm(event) {
         },
         body: JSON.stringify(dataToSend),
     });
-    formInputName.placeholder = "Name";
-    formInputEmail.placeholder = "Email";
-    formInputPhone.placeholder = "Phone";
-    formInputMessage.placeholder = "Escriba su mensaje aqui...";
+
+    formInputName.value = "";
+    formInputEmail.value = "";
+    formInputPhone.value = "";
+    formInputMessage.value = "";
 
     response.json().then(data => {
         console.log(data);
