@@ -16,7 +16,6 @@ async function sendForm(event) {
     const dataToSend = { 'name': `${name}`, 'email': `${email}`, 'phone': `${phone}`, 'message': `${message}` };
     const response = await fetch("https://152.67.43.92/sendForm", {
         method: 'POST',
-        mode: 'no-cors',
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
