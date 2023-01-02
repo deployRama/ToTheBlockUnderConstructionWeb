@@ -14,10 +14,6 @@ async function sendForm(event) {
     const phone = formInputPhone.value;
     const message = formInputMessage.value;
     const dataToSend = { 'name': `${name}`, 'email': `${email}`, 'phone': `${phone}`, 'message': `${message}` };
-    formInputName.value = '';
-    formInputEmail.value = '';
-    formInputPhone.value = '';
-    formInputMessage.value = '';
     const response = await fetch("https://152.67.43.92/sendForm", {
         method: 'POST',
         mode: 'no-cors',
