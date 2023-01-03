@@ -7367,13 +7367,13 @@ async function checkValues(event) {
 
 
 
-async function sendForm(name, email, message) {
+async function sendForm(nameInput, emailInput, messageInput) {
     formButton.innerText = 'Enviando';
     try {
-        const name = name;
-        const email = email;
+        const name = nameInput;
+        const email = emailInput;
         const phone = formInputPhone.value;
-        const message = message;
+        const message = messageInput;
         const dataToSend = { 'name': `${name}`, 'email': `${email}`, 'phone': `${phone}`, 'message': `${message}` };
         const response = await fetch("https://152.67.43.92/sendForm", {
             method: 'POST',
@@ -7382,9 +7382,6 @@ async function sendForm(name, email, message) {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(dataToSend),
-        });
-        response.json().then(data => {
-            console.log(data);
         });
 
         if (response.status == 201) {
