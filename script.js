@@ -14,6 +14,7 @@ formButton.addEventListener('click', sendForm);
 
 async function sendForm(event) {
     event.preventDefault();
+    formButton.innerText = 'Enviando';
     try {
         const name = formInputName.value;
         const email = formInputEmail.value;
@@ -28,11 +29,12 @@ async function sendForm(event) {
             },
             body: JSON.stringify(dataToSend),
         });
-        /* response.json().then(data => {
+        response.json().then(data => {
             console.log(data);
-        }); */
+        });
 
         if (response.status == 201) {
+            formButton.innerText = 'Submit';
             constructResponseFormMessage('Su mensaje se ha enviado correctamente', 'Nuestro equipo se contactará a la brevedad', true);
             toggleResponseForm();
             setTimeout(() => {
@@ -40,6 +42,7 @@ async function sendForm(event) {
             }, 3500);
 
         } else {
+            formButton.innerText = 'Submit';
             constructResponseFormMessage('Hemos tenido un inconveniente al enviar el formulario', 'Por favor vuelva a intentarlo más tarde', false);
             toggleResponseForm();
             setTimeout(() => {
@@ -48,6 +51,7 @@ async function sendForm(event) {
         }
 
     } catch {
+        formButton.innerText = 'Submit';
         constructResponseFormMessage('Hemos tenido un inconveniente al enviar el formulario', 'Por favor vuelva a intentarlo más tarde', false);
         toggleResponseForm();
         setTimeout(() => {
