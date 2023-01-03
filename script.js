@@ -30,48 +30,55 @@ async function checkValues(event) {
     const message = formInputMessage.value;
     const formInputs = { name: `${name}`, email: `${email}`, message: `${message}` };
 
-    await formSchema.validate(formInputs, { abortEarly: false }).then(sendForm(name, email, message)).catch(async (err) => {
-        if (err.errors) {
-            console.log("error");
-            for (let e of err.errors) {
-                if (e.includes('nombre')) {
-                    console.log(e);
-                    formInputName.style.marginTop = "0";
-                    labelName.style.marginTop = "18px";
-                    formClass.style.gap = "2px";
-                    labelName.innerText = `${e}`;
-                    setTimeout(() => {
-                        formClass.style.gap = "8px";
-                        formInputName.style.marginTop = "24px";
-                        labelName.style.marginTop = "0";
-                        labelName.innerText = "";
-                    }, 2500);
+    const validation = await formSchema.isValid(formInputs);
 
-                }
-                else if (e.includes('email')) {
-                    console.log(e);
-                    formClass.style.gap = "2px";
-                    labelEmail.innerText = `${e}`;
-                    setTimeout(() => {
-                        formClass.style.gap = "8px";
-                        labelEmail.innerText = "";
-                    }, 2500);
-                }
+    if (validation) {
+        await sendForm(name, email, message);
+    } else {
+        await formSchema.validate(formInputs, { abortEarly: false }).catch(async (err) => {
+            if (err.errors) {
+                for (let e of err.errors) {
+                    if (e.includes('nombre')) {
+                        console.log(e);
+                        formInputName.style.marginTop = "0";
+                        labelName.style.marginTop = "18px";
+                        formClass.style.gap = "2px";
+                        labelName.innerText = `${e}`;
+                        setTimeout(() => {
+                            formClass.style.gap = "8px";
+                            formInputName.style.marginTop = "24px";
+                            labelName.style.marginTop = "0";
+                            labelName.innerText = "";
+                        }, 2500);
 
-                else if (e.includes('mensaje')) {
-                    console.log(e);
-                    formClass.style.gap = "2px";
-                    labelMessage.innerText = `${e}`;
-                    setTimeout(() => {
-                        formClass.style.gap = "8px";
-                        labelMessage.innerText = "";
-                    }, 2500);
+                    }
+                    else if (e.includes('email')) {
+                        console.log(e);
+                        formClass.style.gap = "2px";
+                        labelEmail.innerText = `${e}`;
+                        setTimeout(() => {
+                            formClass.style.gap = "8px";
+                            labelEmail.innerText = "";
+                        }, 2500);
+                    }
+
+                    else if (e.includes('mensaje')) {
+                        console.log(e);
+                        formClass.style.gap = "2px";
+                        labelMessage.innerText = `${e}`;
+                        setTimeout(() => {
+                            formClass.style.gap = "8px";
+                            labelMessage.innerText = "";
+                        }, 2500);
+                    }
                 }
+            } else {
+                console.log('sin errores');
             }
-        }
-    })
-
+        })
+    }
 }
+
 
 
 async function sendForm(name, email, message) {
@@ -131,66 +138,6 @@ async function sendForm(name, email, message) {
 }
 
 
-
-/* formButton.addEventListener('click', sendForm);
-
-async function sendForm(event) {
-    event.preventDefault();
-    formButton.innerText = 'Enviando';
-    try {
-        const name = formInputName.value;
-        const email = formInputEmail.value;
-        const phone = formInputPhone.value;
-        const message = formInputMessage.value;
-        const dataToSend = { 'name': `${name}`, 'email': `${email}`, 'phone': `${phone}`, 'message': `${message}` };
-        const response = await fetch("https://152.67.43.92/sendForm", {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(dataToSend),
-        });
-        response.json().then(data => {
-            console.log(data);
-        });
-
-        if (response.status == 201) {
-            formButton.innerText = 'Submit';
-            constructResponseFormMessage('Su mensaje se ha enviado correctamente', 'Nuestro equipo se contactará a la brevedad', true);
-            toggleResponseForm();
-            setTimeout(() => {
-                toggleResponseForm();
-            }, 3500);
-
-        } else {
-            formButton.innerText = 'Submit';
-            constructResponseFormMessage('Hemos tenido un inconveniente al enviar el formulario', 'Por favor vuelva a intentarlo más tarde', false);
-            toggleResponseForm();
-            setTimeout(() => {
-                toggleResponseForm();
-            }, 3500);
-        }
-
-    } catch {
-        formButton.innerText = 'Submit';
-        constructResponseFormMessage('Hemos tenido un inconveniente al enviar el formulario', 'Por favor vuelva a intentarlo más tarde', false);
-        toggleResponseForm();
-        setTimeout(() => {
-            toggleResponseForm();
-        }, 3500);
-    }
-
-
-    formInputName.value = "";
-    formInputEmail.value = "";
-    formInputPhone.value = "";
-    formInputMessage.value = "";
-
-
-
-} */
-
 function toggleResponseForm() {
     messageForm.classList.toggle('inactive');
     formClass.classList.toggle('inactive');
@@ -203,11 +150,3 @@ function constructResponseFormMessage(p1, p2, success) {
         messageFormBox.style.border = "5px solid red";
     }
 }
-
-
-
-
-
-
-
-
