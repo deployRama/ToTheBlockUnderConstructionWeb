@@ -120,7 +120,7 @@ body {
     align-content: center;
     gap: 8px;
     background-color: var(--orange);
-    /* height: 350px; */
+    max-height: 368px;
     box-sizing: border-box;
 
 
@@ -293,6 +293,12 @@ body {
     .messageFormBox p {
         font-size: var(--md);
         margin: 10px;
+    }
+
+    #labelName,
+    #labelEmail,
+    #labelMessage {
+        font-size: var(--sm);
     }
 
 }
