@@ -32,7 +32,7 @@ async function sendForm(event) {
             console.log(data);
         }); */
 
-        if (response.status == 200) {
+        if (response.status == 201) {
             constructResponseFormMessage('Su mensaje se ha enviado correctamente', 'Nuestro equipo se contactará a la brevedad', true);
             toggleResponseForm();
             setTimeout(() => {
