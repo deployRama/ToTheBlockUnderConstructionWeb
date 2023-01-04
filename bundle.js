@@ -7326,8 +7326,6 @@ async function checkValues(event) {
                 for (let e of err.errors) {
                     if (e.includes('nombre')) {
                         console.log(e);
-                        formInputName.style.marginTop = "0";
-                        labelName.style.marginTop = "18px";
                         formClass.style.gap = "2px";
                         labelName.innerText = `${e}`;
                         setTimeout(() => {
@@ -7336,6 +7334,7 @@ async function checkValues(event) {
                             labelName.style.marginTop = "0";
                             labelName.innerText = "";
                         }, 2500);
+
 
                     }
                     else if (e.includes('email')) {
