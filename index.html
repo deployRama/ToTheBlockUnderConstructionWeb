@@ -23,22 +23,29 @@
             <p>Próximos a lanzar la web</p>
         </div>
         <div class="divForm">
+            <div class="messageForm inactive">
+                <div class="messageFormBox">
+                    <p id="p1ResponseForm"></p>
+                    <p id="p2ResponseForm"></p>
+                </div>
+
+            </div>
             <form action="" class="formClass">
-                <label for="name"></label>
                 <input type="text" id="name" placeholder="Name">
+                <label for="name" id="labelName"></label>
 
-                <label for="email"></label>
                 <input type="text" id="email" placeholder="Email">
+                <label for="email" id="labelEmail"></label>
 
-                <label for="phone"></label>
                 <input type="text" id="phone" placeholder="Phone">
-
-                <label for="message"></label>
+                <label for="phone"></label>
 
                 <textarea name="" id="message" placeholder="Escriba su mensaje aqui..."></textarea>
+                <label for="message" id="labelMessage"></label>
 
                 <button id="buttonSubmitForm">Submit</button>
             </form>
+
         </div>
         <div class="footerDiv">
             <p>© 2023 Powered and secured by To the block</p>
@@ -51,7 +58,7 @@
 
         </div>
     </div>
-
+    <script src="bundle.js"></script>
 </body>
 
 </html>

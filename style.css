@@ -9,6 +9,7 @@
     --hospital-green: #ACD9B2;
     --sm: 12px;
     --md: 16px;
+    --xmd: 20px;
     --lg: 28px;
     --xlg: 48px;
     --fontRedRose: 'Red Rose', cursive;
@@ -20,9 +21,10 @@ body {
     background-image: url("./images/backgroundWeb.webp");
     background-color: var(--blue);
 
+}
 
-
-
+.inactive {
+    display: none !important;
 }
 
 .appContainer {
@@ -83,6 +85,34 @@ body {
 
 }
 
+.messageForm {
+    display: flex;
+    width: 100%;
+    background-color: var(--orange);
+    height: 368px;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+.messageFormBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: center;
+    align-items: center;
+    box-sizing: border-box;
+    border: 5px solid var(--whiteSucio);
+    background-color: var(--blue);
+}
+
+.messageFormBox p {
+    font-size: var(--xmd);
+    margin: 15px;
+    color: var(--white);
+    box-sizing: border-box;
+}
+
 .formClass {
     display: flex;
     flex-direction: column;
@@ -90,7 +120,7 @@ body {
     align-content: center;
     gap: 8px;
     background-color: var(--orange);
-    /* height: 350px; */
+    max-height: 368px;
     box-sizing: border-box;
 
 
@@ -252,6 +282,23 @@ body {
         text-align: center;
         font-size: var(--lg);
         margin-bottom: 12px;
+    }
+
+
+    .messageFormBox {
+        width: 70%;
+
+    }
+
+    .messageFormBox p {
+        font-size: var(--md);
+        margin: 10px;
+    }
+
+    #labelName,
+    #labelEmail,
+    #labelMessage {
+        font-size: var(--sm);
     }
 
 }
