@@ -88,7 +88,7 @@ async function sendForm(nameInput, emailInput, messageInput) {
         const phone = formInputPhone.value;
         const message = messageInput;
         const dataToSend = { 'name': `${name}`, 'email': `${email}`, 'phone': `${phone}`, 'message': `${message}` };
-        const response = await fetch("https://152.67.43.92/sendForm", {
+        const response = await fetch("https://api.totheblock.com/sendForm", {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
